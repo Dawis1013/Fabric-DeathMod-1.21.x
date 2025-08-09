@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "deathmod",
+	"version": "${version}",
+	"name": "Death Mod",
+	"description": "Mod that changes item behavior after a player dies.",
+	"authors": [
+		"DawisX13"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "MIT",
+	"icon": "assets/deathmod/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.dawisx13.deathmod.DeathMod"
+		],
+		"fabric-datagen": [
+			"net.dawisx13.deathmod.DeathModDataGenerator"
+		],
+      "client": [
+        "net.dawisx13.deathmod.DeathModClient"
+      ]
+	},
+	"mixins": [
+		"deathmod.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.17.2",
+		"minecraft": "~1.21.8",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
