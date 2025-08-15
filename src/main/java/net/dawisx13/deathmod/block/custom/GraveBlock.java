@@ -33,7 +33,13 @@ public class GraveBlock extends BlockWithEntity implements BlockEntityProvider {
 
     @Override
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-        return super.onUse(state, world, pos, player, hit);
+        if (!world.isClient()) {
+            if (world.getBlockEntity(pos) instanceof GraveBlockEntity graveBlockEntity) {
+                player.openHandledScreen(graveBlockEntity);
+            }
+        }
+
+        return ActionResult.SUCCESS;
     }
 
     @Override

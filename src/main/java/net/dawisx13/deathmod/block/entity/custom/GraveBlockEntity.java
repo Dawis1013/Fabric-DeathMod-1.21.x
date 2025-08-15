@@ -2,10 +2,10 @@ package net.dawisx13.deathmod.block.entity.custom;
 
 import net.dawisx13.deathmod.block.entity.ImplementedInventory;
 import net.dawisx13.deathmod.block.entity.ModBlockEntities;
+import net.dawisx13.deathmod.screen.GraveScreenHandler;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 
 import net.minecraft.entity.player.PlayerInventory;
@@ -21,6 +21,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.storage.ReadView;
 import net.minecraft.storage.WriteView;
 import net.minecraft.text.Text;
+import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.Nullable;
@@ -29,6 +30,7 @@ public class GraveBlockEntity extends BlockEntity implements ImplementedInventor
 
     // 41 = 27 main slots + 9 hotbar slots + 1 secondary arm slot + 4 armor slots
     private DefaultedList<ItemStack> inventory = DefaultedList.ofSize(41, ItemStack.EMPTY);
+    private Text playerName;
 
     public GraveBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.GRAVE_BLOCK_ENTITY, pos, state);
@@ -50,6 +52,13 @@ public class GraveBlockEntity extends BlockEntity implements ImplementedInventor
         super.readData(view);
         Inventories.readData(view, inventory);
     }
+
+    @Override
+    public void onBlockReplaced(BlockPos pos, BlockState oldState) {
+        ItemScatterer.spawn(world, pos, (this));
+        super.onBlockReplaced(pos, oldState);
+    }
+
 
     public void setInventory(DefaultedList<ItemStack> inv) {
         this.inventory = inv;
@@ -73,11 +82,15 @@ public class GraveBlockEntity extends BlockEntity implements ImplementedInventor
 
     @Override
     public Text getDisplayName() {
-        return Text.literal("[player]' s"/*TODO*/ + "grave");
+        return Text.literal(this.playerName + "' s grave");
+    }
+
+    public void setPlayerName(Text playerName) {
+        this.playerName = playerName;
     }
 
     @Override
     public @Nullable ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
-        return null;
+        return new GraveScreenHandler(syncId, playerInventory, this.pos);
     }
 }

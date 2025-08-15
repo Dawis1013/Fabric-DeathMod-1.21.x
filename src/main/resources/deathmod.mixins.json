@@ -3,7 +3,7 @@
 	"package": "net.dawisx13.deathmod.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-		"ExampleMixin"
+        "DeathMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

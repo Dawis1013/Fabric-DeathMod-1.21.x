@@ -2,9 +2,11 @@ package net.dawisx13.deathmod.block;
 
 import net.dawisx13.deathmod.DeathMod;
 import net.dawisx13.deathmod.block.custom.GraveBlock;
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.item.ItemGroups;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
@@ -26,5 +28,9 @@ public class ModBlocks {
 
     public static void init() {
         DeathMod.LOGGER.info("Initializing Modded Blocks");
+
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.OPERATOR).register(entries -> {
+            entries.add(ModBlocks.GRAVE);
+        });
     }
 }
