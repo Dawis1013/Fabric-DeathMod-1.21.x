@@ -2,10 +2,13 @@ package net.dawisx13.deathmod.block.custom;
 
 import com.mojang.serialization.MapCodec;
 import net.dawisx13.deathmod.block.entity.custom.GraveBlockEntity;
+import net.dawisx13.deathmod.util.TickableBlockEntity;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.ActionResult;
@@ -40,6 +43,11 @@ public class GraveBlock extends BlockWithEntity implements BlockEntityProvider {
         }
 
         return ActionResult.SUCCESS;
+    }
+
+    @Override
+    public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        return TickableBlockEntity.getTicker(world);
     }
 
     @Override

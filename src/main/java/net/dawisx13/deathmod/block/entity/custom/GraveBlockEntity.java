@@ -3,6 +3,7 @@ package net.dawisx13.deathmod.block.entity.custom;
 import net.dawisx13.deathmod.block.entity.ImplementedInventory;
 import net.dawisx13.deathmod.block.entity.ModBlockEntities;
 import net.dawisx13.deathmod.screen.GraveScreenHandler;
+import net.dawisx13.deathmod.util.TickableBlockEntity;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -26,43 +27,53 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.Nullable;
 
-public class GraveBlockEntity extends BlockEntity implements ImplementedInventory, ExtendedScreenHandlerFactory<BlockPos> {
+public class GraveBlockEntity extends BlockEntity implements ImplementedInventory, ExtendedScreenHandlerFactory<BlockPos>, TickableBlockEntity {
 
     // 41 = 27 main slots + 9 hotbar slots + 1 secondary arm slot + 4 armor slots
-    private DefaultedList<ItemStack> inventory = DefaultedList.ofSize(41, ItemStack.EMPTY);
+    // 54 for now, for the GUI to properly render
+    private DefaultedList<ItemStack> inventory = DefaultedList.ofSize(54, ItemStack.EMPTY);
     private Text playerName;
+    private int ticks = 6000;
 
     public GraveBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.GRAVE_BLOCK_ENTITY, pos, state);
     }
 
     @Override
-    public DefaultedList<ItemStack> getItems() {
-        return inventory;
-    }
-
-    @Override
     protected void writeData(WriteView view) {
         super.writeData(view);
         Inventories.writeData(view, inventory);
+        if (this.playerName != null) {
+            view.putString("playerName", this.playerName.getLiteralString());
+        }
+        view.putInt("ticks", this.ticks);
     }
 
     @Override
     protected void readData(ReadView view) {
         super.readData(view);
         Inventories.readData(view, inventory);
+        this.playerName = Text.literal(view.getString("playerName", "Player"));
+        this.ticks = view.getInt("ticks", 6000);
+    }
+
+    @Override
+    public void tick() {
+        if (world != null && !world.isClient()) {
+            this.ticks--;
+
+            if (this.ticks <= 0) {
+                world.breakBlock(pos, false);
+            }
+        }
     }
 
     @Override
     public void onBlockReplaced(BlockPos pos, BlockState oldState) {
-        ItemScatterer.spawn(world, pos, (this));
-        super.onBlockReplaced(pos, oldState);
-    }
-
-
-    public void setInventory(DefaultedList<ItemStack> inv) {
-        this.inventory = inv;
-        markDirty();
+        if (this.ticks > 0) {
+            ItemScatterer.spawn(world, pos, (this));
+            super.onBlockReplaced(pos, oldState);
+        }
     }
 
     @Override
@@ -76,21 +87,31 @@ public class GraveBlockEntity extends BlockEntity implements ImplementedInventor
     }
 
     @Override
+    public @Nullable ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
+        return new GraveScreenHandler(syncId, playerInventory, this.pos);
+    }
+
+    @Override
     public BlockPos getScreenOpeningData(ServerPlayerEntity serverPlayerEntity) {
         return this.pos;
     }
 
     @Override
+    public DefaultedList<ItemStack> getItems() {
+        return inventory;
+    }
+
+    public void setInventory(DefaultedList<ItemStack> inv) {
+        this.inventory = inv;
+        markDirty();
+    }
+
+    @Override
     public Text getDisplayName() {
-        return Text.literal(this.playerName + "' s grave");
+        return Text.literal(this.playerName.getLiteralString() + "'s Grave");
     }
 
     public void setPlayerName(Text playerName) {
         this.playerName = playerName;
-    }
-
-    @Override
-    public @Nullable ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
-        return new GraveScreenHandler(syncId, playerInventory, this.pos);
     }
 }
