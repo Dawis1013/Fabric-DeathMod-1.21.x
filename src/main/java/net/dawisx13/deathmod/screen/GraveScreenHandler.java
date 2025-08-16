@@ -21,7 +21,7 @@ public class GraveScreenHandler extends ScreenHandler {
         this.inventory = ((Inventory) blockEntity);
 
         addCustomInventorySlots();
-        addPlayerSlots(playerInventory, 8, 139);
+        addPlayerSlots(playerInventory, 8, 140);
 
     }
 
@@ -56,9 +56,25 @@ public class GraveScreenHandler extends ScreenHandler {
     }
 
     private void addCustomInventorySlots() {
-        for (int m = 0; m < 6; ++m) {
-            for (int l = 0; l < 9; ++l) {
-                this.addSlot(new Slot(this.inventory, l + m * 9, 9 + l * 19, 19 + m * 18));
+        int indexMain = 0;
+        int indexEquipment = 0;
+        for (int m = 0; m < 6; m++) {
+            if (m >= 2) {
+                for (int l = 0; l < 9; l++) {
+                    this.addSlot(new Slot(this.inventory, indexMain, 8 + l * 18, 18 + m * 18));
+                    indexMain++;
+                }
+            } else if (m == 0) {
+                for (int l = 1; l < 8; l++) {
+                    if (l != 5 && l != 6) {
+                        this.addSlot(new Slot(this.inventory, 37 + indexEquipment, 8 + l * 18, 18));
+                        indexEquipment++;
+
+                        if (indexEquipment + 37 > 40) {
+                            indexEquipment = -1;
+                        }
+                    }
+                }
             }
         }
     }

@@ -2,7 +2,6 @@ package net.dawisx13.deathmod.mixin;
 
 import net.dawisx13.deathmod.block.ModBlocks;
 import net.dawisx13.deathmod.block.entity.custom.GraveBlockEntity;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -22,7 +21,7 @@ public abstract class DeathMixin {
     private void graveInit(CallbackInfo info) {
         ServerPlayerEntity player = (ServerPlayerEntity) (Object) this;
 
-        if (!player.getWorld().getGameRules().getBoolean(GameRules.KEEP_INVENTORY)) {
+        if (!player.getWorld().getGameRules().getBoolean(GameRules.KEEP_INVENTORY) && !player.getWorld().isClient()) {
             ServerWorld world = player.getWorld();
             BlockPos deathPos = player.getBlockPos();
             BlockPos gravePos = findSuitableGravePos(world, deathPos);
@@ -31,13 +30,13 @@ public abstract class DeathMixin {
             world.setBlockState(gravePos, ModBlocks.GRAVE.getDefaultState());
 
             // Transfer player's inventory to the grave
-            BlockEntity blockEntity = world.getBlockEntity(gravePos);
-            if (blockEntity instanceof GraveBlockEntity graveBlockEntity) {
+            if (world.getBlockEntity(gravePos) instanceof GraveBlockEntity graveBlockEntity) {
                 graveBlockEntity.setPlayerName(player.getName());
 
                 DefaultedList<ItemStack> graveInv = DefaultedList.of();
                 graveInv.addAll(player.getInventory().getMainStacks());
-                graveInv.add(player.getInventory().getStack(EquipmentSlot.OFFHAND.getOffsetEntitySlotId(36)));
+
+                graveInv.add(player.getInventory().getStack(player.getInventory().OFF_HAND_SLOT));
                 graveInv.add(player.getInventory().getStack(EquipmentSlot.HEAD.getOffsetEntitySlotId(36)));
                 graveInv.add(player.getInventory().getStack(EquipmentSlot.CHEST.getOffsetEntitySlotId(36)));
                 graveInv.add(player.getInventory().getStack(EquipmentSlot.LEGS.getOffsetEntitySlotId(36)));

@@ -30,8 +30,7 @@ import org.jetbrains.annotations.Nullable;
 public class GraveBlockEntity extends BlockEntity implements ImplementedInventory, ExtendedScreenHandlerFactory<BlockPos>, TickableBlockEntity {
 
     // 41 = 27 main slots + 9 hotbar slots + 1 secondary arm slot + 4 armor slots
-    // 54 for now, for the GUI to properly render
-    private DefaultedList<ItemStack> inventory = DefaultedList.ofSize(54, ItemStack.EMPTY);
+    private DefaultedList<ItemStack> inventory = DefaultedList.ofSize(41, ItemStack.EMPTY);
     private Text playerName;
     private int ticks = 6000;
 

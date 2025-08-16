@@ -15,7 +15,11 @@ import net.minecraft.util.Identifier;
 import java.util.function.Function;
 
 public class ModBlocks {
-    public static final Block GRAVE = registerBlock("grave", GraveBlock::new, AbstractBlock.Settings.create().nonOpaque());
+    public static final Block GRAVE = registerBlock("grave", GraveBlock::new,
+            AbstractBlock.Settings.create()
+                    .nonOpaque()
+                    .noCollision()
+    );
 
     private static Block registerBlock(String path, Function<AbstractBlock.Settings, Block> factory, AbstractBlock.Settings settings) {
         final Identifier identifier = Identifier.of(DeathMod.MOD_ID, path);
