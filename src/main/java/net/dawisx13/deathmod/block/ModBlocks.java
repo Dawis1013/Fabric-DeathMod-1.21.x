@@ -18,7 +18,7 @@ public class ModBlocks {
     public static final Block GRAVE = registerBlock("grave", GraveBlock::new,
             AbstractBlock.Settings.create()
                     .nonOpaque()
-                    .noCollision()
+                    .strength(2f)
     );
 
     private static Block registerBlock(String path, Function<AbstractBlock.Settings, Block> factory, AbstractBlock.Settings settings) {
