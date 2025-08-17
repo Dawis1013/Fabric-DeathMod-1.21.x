@@ -3,6 +3,7 @@ package net.dawisx13.deathmod.mixin;
 import net.dawisx13.deathmod.block.ModBlocks;
 import net.dawisx13.deathmod.block.entity.custom.GraveBlockEntity;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -35,8 +36,7 @@ public abstract class DeathMixin {
 
                 DefaultedList<ItemStack> graveInv = DefaultedList.of();
                 graveInv.addAll(player.getInventory().getMainStacks());
-
-                graveInv.add(player.getInventory().getStack(player.getInventory().OFF_HAND_SLOT));
+                graveInv.add(player.getInventory().getStack(PlayerInventory.OFF_HAND_SLOT));
                 graveInv.add(player.getInventory().getStack(EquipmentSlot.HEAD.getOffsetEntitySlotId(36)));
                 graveInv.add(player.getInventory().getStack(EquipmentSlot.CHEST.getOffsetEntitySlotId(36)));
                 graveInv.add(player.getInventory().getStack(EquipmentSlot.LEGS.getOffsetEntitySlotId(36)));

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "deathmod:block/grave",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "deathmod:block/grave"
+    },
+    "facing=south": {
+      "model": "deathmod:block/grave",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "deathmod:block/grave",
+      "y": 270
+    }
+  }
+}
