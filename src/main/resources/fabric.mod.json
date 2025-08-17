@@ -8,8 +8,8 @@
 		"DawisX13"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "WIP",
+		"sources": "https://github.com/Dawis1013/Fabric-DeathMod-1.21.x"
 	},
 	"license": "MIT",
 	"icon": "assets/deathmod/icon.png",
@@ -21,9 +21,9 @@
 		"fabric-datagen": [
 			"net.dawisx13.deathmod.DeathModDataGenerator"
 		],
-      "client": [
-        "net.dawisx13.deathmod.DeathModClient"
-      ]
+        "client": [
+          "net.dawisx13.deathmod.DeathModClient"
+        ]
 	},
 	"mixins": [
 		"deathmod.mixins.json"
