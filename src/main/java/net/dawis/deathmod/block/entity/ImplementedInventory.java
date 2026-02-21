@@ -1,4 +1,4 @@
-package net.dawisx13.deathmod.block.entity;
+package net.dawis.deathmod.block.entity;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventories;

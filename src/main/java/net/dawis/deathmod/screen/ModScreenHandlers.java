@@ -1,6 +1,6 @@
-package net.dawisx13.deathmod.screen;
+package net.dawis.deathmod.screen;
 
-import net.dawisx13.deathmod.DeathMod;
+import net.dawis.deathmod.DeathMod;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;

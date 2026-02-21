@@ -1,9 +1,9 @@
-package net.dawisx13.deathmod.block.entity.custom;
+package net.dawis.deathmod.block.entity.custom;
 
-import net.dawisx13.deathmod.block.entity.ImplementedInventory;
-import net.dawisx13.deathmod.block.entity.ModBlockEntities;
-import net.dawisx13.deathmod.screen.GraveScreenHandler;
-import net.dawisx13.deathmod.util.TickableBlockEntity;
+import net.dawis.deathmod.block.entity.ImplementedInventory;
+import net.dawis.deathmod.block.entity.ModBlockEntities;
+import net.dawis.deathmod.screen.GraveScreenHandler;
+import net.dawis.deathmod.util.TickableBlockEntity;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;

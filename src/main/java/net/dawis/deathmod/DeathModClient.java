@@ -1,7 +1,7 @@
-package net.dawisx13.deathmod;
+package net.dawis.deathmod;
 
-import net.dawisx13.deathmod.screen.GraveScreen;
-import net.dawisx13.deathmod.screen.ModScreenHandlers;
+import net.dawis.deathmod.screen.GraveScreen;
+import net.dawis.deathmod.screen.ModScreenHandlers;
 import net.fabricmc.api.ClientModInitializer;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 

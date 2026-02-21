@@ -1,7 +1,7 @@
-package net.dawisx13.deathmod.mixin;
+package net.dawis.deathmod.mixin;
 
-import net.dawisx13.deathmod.block.ModBlocks;
-import net.dawisx13.deathmod.block.entity.custom.GraveBlockEntity;
+import net.dawis.deathmod.block.ModBlocks;
+import net.dawis.deathmod.block.entity.custom.GraveBlockEntity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;

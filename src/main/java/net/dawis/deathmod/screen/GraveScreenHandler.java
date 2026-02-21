@@ -1,4 +1,4 @@
-package net.dawisx13.deathmod.screen;
+package net.dawis.deathmod.screen;
 
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;

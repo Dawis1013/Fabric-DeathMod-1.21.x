@@ -1,8 +1,8 @@
-package net.dawisx13.deathmod.block.custom;
+package net.dawis.deathmod.block.custom;
 
 import com.mojang.serialization.MapCodec;
-import net.dawisx13.deathmod.block.entity.custom.GraveBlockEntity;
-import net.dawisx13.deathmod.util.TickableBlockEntity;
+import net.dawis.deathmod.block.entity.custom.GraveBlockEntity;
+import net.dawis.deathmod.util.TickableBlockEntity;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;

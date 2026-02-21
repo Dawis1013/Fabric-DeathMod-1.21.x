@@ -1,8 +1,8 @@
-package net.dawisx13.deathmod;
+package net.dawis.deathmod;
 
-import net.dawisx13.deathmod.block.ModBlocks;
-import net.dawisx13.deathmod.block.entity.ModBlockEntities;
-import net.dawisx13.deathmod.screen.ModScreenHandlers;
+import net.dawis.deathmod.block.ModBlocks;
+import net.dawis.deathmod.block.entity.ModBlockEntities;
+import net.dawis.deathmod.screen.ModScreenHandlers;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;

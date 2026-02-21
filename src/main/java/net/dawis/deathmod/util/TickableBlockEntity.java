@@ -1,4 +1,4 @@
-package net.dawisx13.deathmod.util;
+package net.dawis.deathmod.util;
 
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;

@@ -1,7 +1,7 @@
-package net.dawisx13.deathmod.block;
+package net.dawis.deathmod.block;
 
-import net.dawisx13.deathmod.DeathMod;
-import net.dawisx13.deathmod.block.custom.GraveBlock;
+import net.dawis.deathmod.DeathMod;
+import net.dawis.deathmod.block.custom.GraveBlock;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;

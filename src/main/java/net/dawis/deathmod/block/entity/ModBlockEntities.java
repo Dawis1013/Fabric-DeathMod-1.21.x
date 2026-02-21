@@ -1,8 +1,8 @@
-package net.dawisx13.deathmod.block.entity;
+package net.dawis.deathmod.block.entity;
 
-import net.dawisx13.deathmod.DeathMod;
-import net.dawisx13.deathmod.block.ModBlocks;
-import net.dawisx13.deathmod.block.entity.custom.GraveBlockEntity;
+import net.dawis.deathmod.DeathMod;
+import net.dawis.deathmod.block.ModBlocks;
+import net.dawis.deathmod.block.entity.custom.GraveBlockEntity;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.registry.Registries;

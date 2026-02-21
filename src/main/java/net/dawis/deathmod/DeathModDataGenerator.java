@@ -1,6 +1,6 @@
-package net.dawisx13.deathmod;
+package net.dawis.deathmod;
 
-import net.dawisx13.deathmod.datagen.ModModelProvider;
+import net.dawis.deathmod.datagen.ModModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 
